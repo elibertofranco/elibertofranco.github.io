@@ -50,7 +50,7 @@ $(document).ready(function () {
   // TODO 2: add a new property to all data shapes
 
   for (let i = 0; i <= 26; i++) {
-    var currentShape = generateShapeData();
+    var currentShape = dataShapes;
     if (currentShape["color"] === "red") {
       currentShape[goodBehavior] = "bounce"
     }
@@ -60,7 +60,7 @@ $(document).ready(function () {
     else {
       currentShape.goodBehavior = "spin"
     }
-    }
+    };
 
   // TODO 3-a: add a function that handles the static display type
   function handleStatic(data) {
@@ -75,7 +75,11 @@ $(document).ready(function () {
   } 
 
   // TODO 5-a: add a function that handles the bad display type
-  
+  handleBad(data, repeat) ;{ 
+    repeat = repeat + 1;
+    setBackgroundWithMixed(data, repeat);
+    animationsDetails.displayType = 3;
+  }
 
   /////////////////////////////////////////////////
   // BUTTON HANDLERS BELOW HERE (3-b, 4-b, 5-b) ///
@@ -88,13 +92,15 @@ $(document).ready(function () {
 
   function goodDisplay() {
     // TODO 4-b: call your handleGood function
-    var currentShape = dataShape.currentIndex;
-    handleGood(currentShape.color, currentShape.shape, currentShape.repeat);
+    var currentShape = dataShapes.currentIndex;
+    handleGood(currentShape["color"], currentShape["shape"], currentShape["repeat"]);
   }
 
   function badDisplay() {
     // TODO 5-b: call your handleBad function
-    
+    var currentShape = dataShapes.currentIndex;
+    var repeat = currentShape.repeat;
+    handleBad(currentShape, repeat);
   }
 
   /////////////////////////////////////////////////
