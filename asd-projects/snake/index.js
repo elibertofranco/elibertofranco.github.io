@@ -146,10 +146,7 @@ function hasCollidedWithApple() {
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-  if (snake.head.column === apple.column) {
-    return true;
-  }
-  if (snake.head.row === apple.row) {
+  if (snake.head.column === apple.column && snake.head.row === apple.row) {
     return true;
   }
   else { 
@@ -197,16 +194,10 @@ function hasCollidedWithSnake() {
 }
 
 function hasHitWall() {
-  if (snake.head.column === COLUMNS) {
+  if (snake.head.column > COLUMNS || snake.head.column < 0 ) {
     return true;
   }
-  if (snake.head.column === 0) {
-    return true;
-  }
-  if (snake.head.row === ROWS) {
-    return true;
-  }
-  if (snake.head.row === 0) {
+  if (snake.head.row > ROWS || snake.head.row < 0 ) {
     return true;
   }
   /* 
