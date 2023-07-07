@@ -50,6 +50,7 @@ function init() {
   snake.head = snake.body[0];
   
   // TODO 8: initialize the first apple
+  makeApple();
 
 
   // start update interval
@@ -95,11 +96,22 @@ function moveSnake() {
   
   /* 
   TODO 6: determine the next row and column for the snake's head
-  
   HINT: The snake's head will need to move forward 1 square based on the value
   of snake.head.direction which may be one of "left", "right", "up", or "down"
   */
-  
+  if (snake.head.direction === 'left') {
+    snake.head.column = snake.head.column - 1;
+  }
+  if (snake.head.direction === 'right') {
+    snake.head.column = snake.head.column + 1;
+  }
+  if (snake.head.direction === 'up') {
+    snake.head.row = snake.head.row - 1;
+  } 
+  if (snake.head.direction === 'down') {
+    snake.head.row = snake.head.row + 1;
+  }
+  repositionSquare(snake.head);
   
 }
 
@@ -114,10 +126,17 @@ function checkForNewDirection(event) {
   if (activeKey === KEY.LEFT) { 
     snake.head.direction = "left"; 
   }
+  if (activeKey === KEY.RIGHT) {
+    snake.head.direction = "right";
+  }
+  if (activeKey === KEY.UP) {
+    snake.head.direction = "up";
+  }
+  if (activeKey === KEY.DOWN) {
+    snake.head.direction = "down";
+  }
 
   // FILL IN THE REST
-  
-  // console.log(snake.head.direction);     // uncomment me!
 }
 
 function hasCollidedWithApple() {
@@ -127,8 +146,15 @@ function hasCollidedWithApple() {
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-  
+  if (snake.head.column === apple.column) {
+    return true;
+  }
+  if (snake.head.row === apple.row) {
+    return true;
+  }
+  else { 
   return false;
+  }
 }
 
 function handleAppleCollision() {
@@ -171,14 +197,30 @@ function hasCollidedWithSnake() {
 }
 
 function hasHitWall() {
+  if (snake.head.column === COLUMNS) {
+    return true;
+  }
+  if (snake.head.column === 0) {
+    return true;
+  }
+  if (snake.head.row === ROWS) {
+    return true;
+  }
+  if (snake.head.row === 0) {
+    return true;
+  }
   /* 
   TODO 7: Should return true if the snake's head has collided with the four walls of the
   board, false otherwise.
-  
+  // ROWS                // the total number of ROWS in the board
+    COLUMNS             // the total number of COLUMNS in the board
+    snake.head.row      // the current row of snake.head
+    snake.head.column   // the current column of snake.head 
   HINT: What will the row and column of the snake's head be if this were the case?
   */
-  
+ else  {
   return false;
+ }
 }
 
 function endGame() {
