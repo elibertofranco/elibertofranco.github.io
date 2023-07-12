@@ -78,7 +78,7 @@ $(document).ready(function () {
   function handleBad(data, repeat) { 
     repeat = repeat + 1;
     setBackgroundWithMixed(data, repeat);
-    animationsDetails.displayType = 3;
+    animationDetails.displayType = 3;
   }
 
   /////////////////////////////////////////////////

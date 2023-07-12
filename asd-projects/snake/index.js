@@ -88,14 +88,14 @@ function moveSnake() {
   column/row properties. 
   
   */
+// code to loop through the indexes of the snake.body array
+  for (var i = snake.body.length - 1; i > 0; i--) {
 
-  for (var i = 1; i < snake.body.length; i++) {
-
-    var snakeSquare = snakeSquare + 1;
-    var nextSnakeSquare = nextSnakeSquare + 1;
-    var nextRow = nextRow + 1;
-    var nextColumn = nextColumn + 1;
-    var nextDirection = nextDirection + 1;
+    var snakeSquare = snake.body[i];
+    var nextSnakeSquare = snake.body[i - 1];
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    var nextDirection = nextSnakeSquare.direction;
     
     snakeSquare.direction = nextDirection;
     snakeSquare.row = nextRow;
@@ -208,7 +208,7 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-  if (snake.body.length === snake.head) {
+  if (snake.body === snake.head) {
     return true;
   } else {
     return false;
@@ -329,18 +329,17 @@ function getRandomAvailablePosition() {
   while (!spaceIsAvailable) {
     randomPosition.column = Math.floor(Math.random() * COLUMNS);
     randomPosition.row = Math.floor(Math.random() * ROWS);
+  //   /*
+  //   TODO 13: After generating the random position determine if that position is
+  //   not occupied by a snakeSquare in the snake's body. If it is then set 
+  //   spaceIsAvailable to false so that a new position is generated.
+  //   */
+    console.log(snake)
     spaceIsAvailable = true;
-    
-    /*
-    TODO 13: After generating the random position determine if that position is
-    not occupied by a snakeSquare in the snake's body. If it is then set 
-    spaceIsAvailable to false so that a new position is generated.
-    */
-  }
-  
-  return randomPosition;
-}
 
+    return randomPosition;
+  }
+}
 /* 
   event.which returns the keycode of the key that is pressed when the
   keydown event occurs
@@ -354,7 +353,6 @@ function getRandomAvailablePosition() {
   */
 function handleKeyDown(event) {
   activeKey = event.which;
-  console.log(activeKey);
 }
 
 
