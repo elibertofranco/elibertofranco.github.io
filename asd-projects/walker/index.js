@@ -17,7 +17,6 @@ function runProgram(){
       "LEFT" : 37,
       "RIGHT" : 39,
       }
-  }
 
   
   // Game Item Objects
@@ -29,7 +28,7 @@ function runProgram(){
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
-
+  $(document).on('keyup', handleKeyUp); 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -48,17 +47,33 @@ function runProgram(){
   */
   function handleKeyDown(event) {
     if (event.which === KEY.LEFT) {
-      speedX = -5;
+      speedY = -5;
       console.log("left pressed");
   } if (event.which === KEY.RIGHT) {
-    speedX = -5;
+    speedY = 5;
     console.log("right pressed");
   }if (event.which === KEY.UP) {
     speedX = -5;
     console.log("up pressed");
   } if (event.which === KEY.DOWN) {
-    speedX = -5;
+    speedX = 5;
     console.log("down pressed");
+  }
+  }
+
+  function handleKeyUp(event) {
+    if (event.which === KEY.LEFT) {
+      speedY = 0;
+      console.log("left released");
+  } if (event.which === KEY.RIGHT) {
+    speedY = 0;
+    console.log("right released");
+  }if (event.which === KEY.UP) {
+    speedX = 0;
+    console.log("up released");
+  } if (event.which === KEY.DOWN) {
+    speedX = 0;
+    console.log("down released");
   }
   }
 
@@ -73,9 +88,12 @@ function runProgram(){
   }
   function repositionGameItem () {
     positionX += speedX;
+    positionY += speedY;
+
   } 
   function redrawGameItem () {
     $("#walker").css("top", positionX);
+    $("#walker").css("left", positionY);
   }
   function endGame() {
     // stop the interval timer
@@ -85,3 +103,4 @@ function runProgram(){
     $(document).off();
   }
   
+}
