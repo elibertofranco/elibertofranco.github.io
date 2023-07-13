@@ -48,8 +48,21 @@ function applyFilter(filterFunction) {
 // TODO 7: Create the applyFilterNoBackground function
 
 
-// TODO 5: Create the keepInBounds function
+// // TODO 5: Create the keepInBounds function
+// // multiple ternary operators syntax
+// // var yourVar = condition1 ? someValue
+// : condition2 ? anotherValue
+// : defaultValue;
 
+function keepInBounds(b) {
+   var bounds = (b < 0) ? 0 
+          : (b > 255) ? 255
+          : b;
+  }
+
+console.log(keepInBounds(-30)); // should print 0
+console.log(keepInBounds(300)); // should print 255
+console.log(keepInBounds(127)); // should print 127
 
 // TODO 3: Create reddify function
 function reddify(x) {
