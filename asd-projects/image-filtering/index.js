@@ -21,7 +21,8 @@ function resetAndRender() {
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
   applyFilter(reddify);
-
+  // applyFilterNoBackground(decreasedBlue);
+  // applyFilterNoBackground(increasedGreenByBlue);
 
   // do not change the below line of code
   render($("#display"), image);
@@ -37,7 +38,7 @@ function applyFilter(filterFunction) {
   for (var r = 0; r < image.length; r++) {
     for (var c = 0; c < image[r].length; c++) {
       var rgbString = image[r][c];
-      var rgbNumbers = rgbStringToArray(rgbstring);
+      var rgbNumbers = rgbStringToArray(rgbString);
       filterFunction(rgbNumbers);
       rgbString = rgbArrayToString(rgbNumbers)
       image[r][c] = rgbString;
@@ -46,7 +47,21 @@ function applyFilter(filterFunction) {
 }
 
 // TODO 7: Create the applyFilterNoBackground function
-
+function applyFilterNoBackground() {
+  var backgroundColor = image[0][0];
+  console.log(backgroundColor);
+  for (var r = 0; r < image.length; r++) {
+    for (var c = 0; c < image[r].length; c++) {
+      if (image[r][c] !== backgroundColor) {
+        var rgbString = image[r][c];
+        var rgbNumbers = rgbStringToArray(rgbString);
+        filterFunction(rgbNumbers);
+        rgbString = rgbArrayToString(rgbNumbers)
+        image[r][c] = rgbString;
+      }
+    } 
+  }
+}
 
 // // TODO 5: Create the keepInBounds function
 // // multiple ternary operators syntax
@@ -56,8 +71,9 @@ function applyFilter(filterFunction) {
 
 function keepInBounds(b) {
   var bounds = (b < 0) ? 0
-      : (b > 255) ? 255
-      :  b;
+    : (b > 255) ? 255
+      : b;
+  return bounds;
 }
 
 console.log(keepInBounds(-30)); // should print 0
@@ -71,8 +87,12 @@ function reddify(r) {
 
 // TODO 6: Create more filter functions
 
-// function decreasedBlue(d){
+function decreasedBlue(d) {
+  d[BLUE] = keepInBounds(d[BLUE] - 50);
+}
 
-// }
+function increasedGreenByBlue(g) {
+  g[GREEN] = keepInBounds(g[BLUE] + g[GREEN]);
+}
 
 // CHALLENGE code goes below here
