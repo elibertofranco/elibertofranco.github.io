@@ -58,6 +58,7 @@ function keepInBounds(b) {
    var bounds = (b < 0) ? 0 
           : (b > 255) ? 255
           : b;
+    return result;
   }
 
 console.log(keepInBounds(-30)); // should print 0

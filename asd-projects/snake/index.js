@@ -209,8 +209,8 @@ function hasCollidedWithSnake() {
   
   */
   for (var i = 1; i < snake.body.length; i ++) {
-      if (snake.body.row === snake.head.row && 
-          snake.body.column === snake.head.column) {
+      if (snake.body[i].row === snake.head.row && 
+          snake.body[i].column === snake.head.column) {
             return true;
     } else {
     return false;
@@ -338,7 +338,7 @@ function getRandomAvailablePosition() {
   //   */
     spaceIsAvailable = true;
     for (var i = 0; i <= snake.body.length - 1; i++) {
-      if (snake.body.row === randomPosition.row && snake.body.column === randomPosition.column) {
+      if (snake.body[i].row === randomPosition.row && snake.body[i].column === randomPosition.column) {
         spaceIsAvailable = false;
       }
     }
