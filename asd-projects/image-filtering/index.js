@@ -42,7 +42,7 @@ function applyFilter(filterFunction) {
         rgbString = rgbArrayToString(rgbNumbers)
         image[r][c] = rgbString;
     }
-}
+} return result;
 }
 
 // TODO 7: Create the applyFilterNoBackground function
@@ -58,7 +58,6 @@ function keepInBounds(b) {
    var bounds = (b < 0) ? 0 
           : (b > 255) ? 255
           : b;
-    return result;
   }
 
 console.log(keepInBounds(-30)); // should print 0

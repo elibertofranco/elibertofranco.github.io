@@ -212,8 +212,8 @@ function hasCollidedWithSnake() {
       if (snake.body[i].row === snake.head.row && 
           snake.body[i].column === snake.head.column) {
             return true;
-    } else {
-    return false;
+  }   else {
+            return false;
   }
 }
 }
