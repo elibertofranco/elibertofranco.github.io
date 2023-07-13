@@ -208,13 +208,15 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-  if (snake.body === snake.head) {
-    return true;
-  } else {
+  for (var i = 1; i < snake.body.length; i ++) {
+      if (snake.body.row === snake.head.row && 
+          snake.body.column === snake.head.column) {
+            return true;
+    } else {
     return false;
   }
 }
-
+}
 function hasHitWall() {
   if (snake.head.column > COLUMNS || snake.head.column < 0 ) {
     return true;
@@ -334,11 +336,14 @@ function getRandomAvailablePosition() {
   //   not occupied by a snakeSquare in the snake's body. If it is then set 
   //   spaceIsAvailable to false so that a new position is generated.
   //   */
-    console.log(snake)
     spaceIsAvailable = true;
-
-    return randomPosition;
+    for (var i = 0; i <= snake.body.length - 1; i++) {
+      if (snake.body.row === randomPosition.row && snake.body.column === randomPosition.column) {
+        spaceIsAvailable = false;
+      }
+    }
   }
+  return randomPosition;
 }
 /* 
   event.which returns the keycode of the key that is pressed when the
